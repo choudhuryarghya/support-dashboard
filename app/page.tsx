@@ -849,7 +849,8 @@ export default function Dashboard() {
               ) : (
                 <div className="flex flex-col gap-5 pb-8">
                   {threadMessages.map((msg, idx) => {
-                    const isUser = msg.role === "user" || (!msg.role)
+                    const role = (msg.role || "").toLowerCase()
+                    const isUser = role === "user" || !role
                     const text = getMessageText(msg)
 
                     if (!text) return null
